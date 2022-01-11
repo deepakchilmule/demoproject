@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 
 import { BrowserRouter, Routes as AppRoutes, Route } from "react-router-dom";
-import AddedUser from "./components/AddedUser";
 import DeleteUser from "./components/DeleteUser";
 import EditUser from "./components/EditUser";
 import Home from "./components/Home";

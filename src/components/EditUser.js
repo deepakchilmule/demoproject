@@ -4,7 +4,14 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function EditUser() {
-  const [user, setUser] = useState("");
+
+
+  const[firstname, setFirstname] = useState("");
+  const[lastname, setLastname] = useState("");
+  const[birthDay, setBirthDay] = useState("");
+ const [email, setEmail] = useState("");
+
+
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -18,10 +25,10 @@ function EditUser() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          email: user,
-          first_name: "deepak",
-          last_name: "narayan",
-          dob: "10/09/2000",
+          email: email,
+          first_name: firstname,
+          last_name: lastname,
+          dob: birthDay,
         }),
       }
     );
@@ -31,23 +38,50 @@ function EditUser() {
   }
 
   return (
-    <div className="w-96 ml-96 mt-40 h-80 border shadow-md rounded-md">
+    <div className="w-96 ml-96 mt-10 h-auto border shadow-md rounded-md">
       <h1 className="bg-green-600 text-white font-semibold text-lg p-3">
         Edit User{" "}
       </h1>
-      <div className="p-4 mt-8">
+      <div className="p-4 mt-1">
         <input
           placeholder="email...."
           className="border rounded w-full p-2 text-gray-700 mt-20"
           onChange={(e) => {
-            setUser(e.target.value);
+            setEmail(e.target.value);
           }}
         ></input>
+
+<input
+          placeholder="first name"
+          className="border rounded w-full p-2 text-gray-700 mt-2"
+          onChange={(e) => {
+            setFirstname(e.target.value);
+          }}
+        ></input>
+
+        
+<input
+          placeholder="last name"
+          className="border rounded w-full p-2 text-gray-700 mt-2"
+          onChange={(e) => {
+            setLastname(e.target.value);
+          }}
+        ></input>
+
+               
+<input
+          placeholder="birthday d/m/y"
+          className="border rounded w-full p-2 text-gray-700 mt-2"
+          onChange={(e) => {
+            setBirthDay(e.target.value);
+          }}
+        ></input>
+
         <br></br>
 
         <button
           onClick={onSave}
-          className="bg-red-500 text-white text-xs font-semibold rounded-md px-4 py-1 mt-2"
+          className="bg-red-500 text-white text-xs font-semibold rounded-md px-6 py-2 mt-2"
         >
           SAVE
         </button>
