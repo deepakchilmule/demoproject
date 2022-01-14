@@ -3,31 +3,25 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-
 function NewUser() {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
 
-
-
-
-const birthday = users ? users.filter((item)=>{
-  return item.dob === "14/01/2022"
-}) : [] ;
-
+  const birthday = users
+    ? users.filter((item) => {
+        return item.dob === "14/01/2022";
+      })
+    : [];
 
   useEffect(() => {
     fetch("https://users-backend-app.herokuapp.com/users")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-      
+
         setUsers(data.data.reverse());
-        
-      }); 
+      });
   }, []);
-
-
 
   console.log(users);
 
@@ -39,8 +33,7 @@ const birthday = users ? users.filter((item)=>{
     navigate("/");
   }
 
- console.log(birthday);
-  
+  console.log(birthday);
 
   return (
     <div className=" ">
@@ -100,25 +93,23 @@ const birthday = users ? users.filter((item)=>{
             </div>
           ))}
         </div>
+      </div>
 
-
-      </div> 
-
-     <div className=" h-96 shadow-lg rounded-md">
-       <div className="ml-40 border w-96 h-80 p-8">
-     { birthday.map((d)=>(
-  <div> 
-    <h1 className="text-2xl font-bold text-red-400">Happy Birthday!!</h1>
-    <h1 className="text-lg font-semibold mt-1"> {`${d.first_name} ${d.last_name}`} </h1>
-   </div>
-)) }
-</div>
-
-     </div>
-
-
-   
-
+      <div className=" h-96 shadow-lg rounded-md">
+        <div className="ml-40 border w-96 h-80 p-8">
+          {birthday.map((d) => (
+            <div>
+              <h1 className="text-2xl font-bold text-red-400">
+                Happy Birthday!!
+              </h1>
+              <h1 className="text-lg font-semibold mt-1">
+                {" "}
+                {`${d.first_name} ${d.last_name}`}{" "}
+              </h1>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
