@@ -4,18 +4,28 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function EditUser() {
-
-
-  const[firstname, setFirstname] = useState("");
-  const[lastname, setLastname] = useState("");
-  const[birthDay, setBirthDay] = useState("");
- const [email, setEmail] = useState("");
-
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [birthDay, setBirthDay] = useState("");
+  const [email, setEmail] = useState("");
+  const [empty, setEmpty] = useState(false);
 
   const navigate = useNavigate();
   const { id } = useParams();
 
   async function onSave() {
+    if (
+      firstname.trim().length === 0 ||
+      lastname.trim().length === 0 ||
+      birthDay.trim().length === 0 ||
+      email.trim().length === 0
+    ) {
+      setEmpty(true);
+      return;
+    } else {
+      setEmpty(false);
+    }
+
     let result = await fetch(
       `https://users-backend-app.herokuapp.com/user/${id}`,
       {
@@ -48,35 +58,50 @@ function EditUser() {
           className="border rounded w-full p-2 text-gray-700 mt-20"
           onChange={(e) => {
             setEmail(e.target.value);
+            if (email.trim().length > 0) {
+              setEmpty(false);
+            }
           }}
         ></input>
 
-<input
+        <input
           placeholder="first name"
           className="border rounded w-full p-2 text-gray-700 mt-2"
           onChange={(e) => {
             setFirstname(e.target.value);
+            if (firstname.trim().length > 0) {
+              setEmpty(false);
+            }
           }}
         ></input>
 
-        
-<input
+        <input
           placeholder="last name"
           className="border rounded w-full p-2 text-gray-700 mt-2"
           onChange={(e) => {
             setLastname(e.target.value);
+            if (lastname.trim().length > 0) {
+              setEmpty(false);
+            }
           }}
         ></input>
 
-               
-<input
+        <input
           placeholder="birthday d/m/y"
           className="border rounded w-full p-2 text-gray-700 mt-2"
           onChange={(e) => {
             setBirthDay(e.target.value);
+            if (birthDay.trim().length > 0) {
+              setEmpty(false);
+            }
           }}
         ></input>
 
+        {empty && (
+          <p className="text-red-500 font-semibold text-sm">
+            cannot proceed with empty inputs!!
+          </p>
+        )}
         <br></br>
 
         <button

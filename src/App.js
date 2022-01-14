@@ -5,6 +5,7 @@ import DeleteUser from "./components/DeleteUser";
 import EditUser from "./components/EditUser";
 import Home from "./components/Home";
 import NewUser from "./components/NewUser";
+import ViewUser from "./components/ViewUser";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/new" element={<NewUser />} />
           <Route path="/edit/:id" element={<EditUser />} />
           <Route path="/delete/:id" element={<DeleteUser />} />
+          <Route path="/view/:id" element={<ViewUser />} /> 
         </AppRoutes>
       </BrowserRouter>
     </div>

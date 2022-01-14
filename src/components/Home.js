@@ -188,7 +188,7 @@ function Home() {
 
           <div className="flex justify-center">
             <button
-              className="bg-green-600 rounded-full px-10 py-3 mt-2 text-white text-xs font-semibold"
+              className="bg-green-600 rounded-full px-12 py-3 mt-2 text-white text-xs font-semibold"
               onClick={() => {
                 signUp();
               }}

@@ -68,7 +68,10 @@ function NewUser() {
           </h1>
 
           {users.map((d) => (
-            <div className="flex justify-between mt-1 px-5 py-2 border rounded-md shadow-md ">
+            <div
+              className="flex justify-between mt-1 px-5 py-2 border rounded-md shadow-md "
+              key={d._id}
+            >
               <div>
                 <h1 className="text-lg font-semibold"> {d.email} </h1>
                 <span className="text-sm font-semibold">
@@ -83,6 +86,14 @@ function NewUser() {
                 >
                   EDIT
                 </Link>
+
+                <Link
+                  className="text-white px-3 rounded-md py-1 bg-yellow-500 font-semibold text-xs ml-1"
+                  to={`/view/${d._id}`}
+                >
+                  VIEW
+                </Link>
+
                 <Link
                   className="text-white px-3 rounded-md py-1 bg-red-500 font-semibold text-xs ml-1"
                   to={`/delete/${d._id}`}
