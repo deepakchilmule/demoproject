@@ -9,7 +9,7 @@ function NewUser() {
 
   const birthday = users
     ? users.filter((item) => {
-        return item.dob === "14/01/2022";
+        return item.dob === "15/01/2022";
       })
     : [];
 
